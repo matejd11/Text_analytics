@@ -23,7 +23,9 @@ def escape(strings):
 	string = string.replace(']', ' ')
 	string = string.replace('[', ' ')
 	string = string.replace('(', ' ')
-	string = string.replace(')', ' ')
+	string = string.replace('(', ' ')
+	string = string.replace('{', ' ')
+	string = string.replace('}', ' ')
 	string = string.replace('|', ' ')
 	string = string.replace(' - ', ' ')
 	return [string, lineCount]
