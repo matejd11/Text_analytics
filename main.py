@@ -7,23 +7,33 @@ def main(fileName = 'test'):
 	s = open(fileName + '-sentences.txt', 'w')
 	w = open(fileName + '-word.txt', 'w')
 	c = open(fileName + '-char.txt', 'w')
+
+	# text from file. 
 	inputString = inputFile.read()
 
+	# list of lines
 	strings = inputString.splitlines(True)
 
+	# string witout non Alfanum characters (with . ! ?)
 	escapedString, lineCount = escape(strings)
 
+	# word and sentence statistics
 	words_final, wordCount, sentenceCount, sentences_final = wordStats(escapedString)
 
-	dunmpStats(w, words_final)
-	
-	dunmpStats(s, sentences_final)
-
+	# char statistics
 	char_final, charCount = charStats(escapedString)
 
-	dunmpStats(c, char_final)
-
+	# writting basic stats to file
 	stats_basic(r, lineCount, wordCount, charCount, sentenceCount)
+
+	# writting word stats to file
+	dunmpStats(w, words_final)
+	
+	# writting sentence stats to file
+	dunmpStats(s, sentences_final)
+
+	# writting character stats to file
+	dunmpStats(c, char_final)
 
 	inputFile.close()
 	r.close()
