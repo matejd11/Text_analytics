@@ -28,6 +28,7 @@ def escape(strings):
 	string = string.replace('}', ' ')
 	string = string.replace('|', ' ')
 	string = string.replace(' - ', ' ')
+
 	return [string, lineCount]
 
 def wordStats(escapedString):
@@ -102,6 +103,6 @@ def stats_basic(stat_file, lineCount, wordCount, charCount, sentenceCount):
 	stat_file.write("Char per sentence(avg): " + str(round(charCount/sentenceCount, 2)) + "\n")
 	stat_file.write("Char per word(avg): " + str(round(charCount/wordCount, 2)) + "\n")
 
-def stats(stat_file, data):
+def dunmpStats(stat_file, data):
 	for item in data:
 		stat_file.write(str(item[0]) + "," + str(item[1])  + "\n")

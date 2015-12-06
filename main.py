@@ -1,12 +1,12 @@
 from stats import *
 import codecs
 
-def main():
-	inputFile = codecs.open('text.txt', 'r', 'utf-8')
-	r = open('result-basic.txt', 'w')
-	s = open('result-sentences.txt', 'w')
-	w = open('result-word.txt', 'w')
-	c = open('result-char.txt', 'w')
+def main(fileName = 'test'):
+	inputFile = codecs.open(fileName + '.txt', 'r', 'utf-8')
+	r = open(fileName + '-basic.txt', 'w')
+	s = open(fileName + '-sentences.txt', 'w')
+	w = open(fileName + '-word.txt', 'w')
+	c = open(fileName + '-char.txt', 'w')
 	inputString = inputFile.read()
 
 	strings = inputString.splitlines(True)
@@ -15,13 +15,13 @@ def main():
 
 	words_final, wordCount, sentenceCount, sentences_final = wordStats(escapedString)
 
-	stats(w, words_final)
+	dunmpStats(w, words_final)
 	
-	stats(s, sentences_final)
+	dunmpStats(s, sentences_final)
 
 	char_final, charCount = charStats(escapedString)
 
-	stats(c, char_final)
+	dunmpStats(c, char_final)
 
 	stats_basic(r, lineCount, wordCount, charCount, sentenceCount)
 
@@ -32,4 +32,7 @@ def main():
 	c.close()
 
 if __name__ == '__main__':
-	main()
+    if len(sys.argv) == 2:
+        main(sys.argv[1])
+    else:
+        main()
