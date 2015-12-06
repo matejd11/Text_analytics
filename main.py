@@ -1,5 +1,6 @@
 from stats import *
 import codecs
+import sys
 
 def main(fileName = 'test'):
 	inputFile = codecs.open(fileName + '.txt', 'r', 'utf-8')
