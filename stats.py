@@ -23,9 +23,30 @@ def compareStats(name, resA, resB):
         B = resB[0] 
         for i in range(len(A)):
             a1, a2 = A[i]
-            b1, b2 = B[i]
-            print(a2, b2)
-            diff = b2 -a2 
+            for j in range(len(B)):
+                b1, b2 = B[j]
+                if a1 == b1:
+                    diff = b2 -a2 
+                    res += "\n\t" + str(a1) + ": "
+                    res += str(diff)
+                    break            
+
+    if name == "sentanc":
+        A = resA[0] 
+        B = resB[0] 
+        for i in range(len(A)):
+            a1, a2 = A[i]
+            for j in range(len(B)):
+                b1, b2 = B[j]
+                if a1 == b1:
+                    diff = b2 -a2 
+                    res += "\n\t" + str(a1) + ": "
+                    res += str(diff)
+                    break               
+    '''
+    if name == "char":
+        for i in range(len(resA)):
+            diff = resB[i] - resA[i] 
             if i == 0:
                 res += "\n\tin line count: "
             elif i == 1:
@@ -35,7 +56,7 @@ def compareStats(name, resA, resB):
             elif i == 3:
                 res += "\n\tin centences count:"
             res += str(diff)            
-    
+    '''
     res += "\n" 
     return res
 
@@ -102,7 +123,7 @@ def escape(strings):
     
     for x in strings:
         newLine = x.replace('\n', ' ')
-        newLine = x.replace('\t', ' ')
+        newLine = newLine.replace('\t', ' ')
         newLine.strip()
         if len(newLine):
             lineCount += 1
