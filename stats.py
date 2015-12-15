@@ -170,7 +170,7 @@ def wordStats(escapedString):
 
     return [words_final, wordCount, sentenceCount, sentences_final] 
 
-def charStats(escapedString, num_char, order = 1):
+def charStats(escapedString, order = 1):
     chars = {}
     charCount = 0
 
@@ -184,7 +184,7 @@ def charStats(escapedString, num_char, order = 1):
                     chars[char.lower()] = 1
 
     for i in chars:
-        chars[i] = chars[i] / charCount
+        chars[i] = float("{0:.5f}".format(chars[i] / charCount))
 
     # order by count
     if order == 1:
