@@ -2,6 +2,14 @@ import operator
 import codecs
 
 
+def createDict(listOfTuples):
+    res = {}
+    for item in listOfTuples:
+        itemA, itemB = item
+        res[itemA] = itemB
+
+    return res
+    
 def compareStats(name, resA, resB):    
     res = "difference in " + name + ":"
 
@@ -19,8 +27,33 @@ def compareStats(name, resA, resB):
             res += str(diff)            
 
     if name == "word":
-        A = resA[0] 
-        B = resB[0] 
+        A = createDict(resA[0])
+        B = createDict(resB[0])
+        res = {}
+
+        for i in A:
+            if i in B.keys():
+                if not i in res.keys():
+                    res[i] = B[i] - A[i]
+            else:
+                res[i] = -A[i]
+
+
+        for i in B:
+            if i in A.keys():
+                if not i in res.keys():
+                    res[i] = B[i] - A[i]
+            else:
+                res[i] = B[i]
+
+
+        print("ress")
+        for i in res:
+            print(i,res[i])
+
+
+
+        '''
         for i in range(len(A)):
             a1, a2 = A[i]
             for j in range(len(B)):
@@ -30,10 +63,11 @@ def compareStats(name, resA, resB):
                     res += "\n\t" + str(a1) + ": "
                     res += str(diff)
                     break            
+        '''
 
     if name == "sentanc":
-        A = resA[0] 
-        B = resB[0] 
+        A = createDict(resA[0]) 
+        B = createDict(resB[0])
         for i in range(len(A)):
             a1, a2 = A[i]
             for j in range(len(B)):
@@ -43,20 +77,20 @@ def compareStats(name, resA, resB):
                     res += "\n\t" + str(a1) + ": "
                     res += str(diff)
                     break               
-    '''
+    
     if name == "char":
-        for i in range(len(resA)):
-            diff = resB[i] - resA[i] 
-            if i == 0:
-                res += "\n\tin line count: "
-            elif i == 1:
-                res += "\n\tin word count: "
-            elif i == 2:
-                res += "\n\tin char count: "
-            elif i == 3:
-                res += "\n\tin centences count:"
-            res += str(diff)            
-    '''
+        A = createDict(resA[0]) 
+        B = createDict(resB[0])
+        for i in range(len(A)):
+            a1, a2 = A[i]
+            for j in range(len(B)):
+                b1, b2 = B[j]
+                if a1 == b1:
+                    diff = b2 -a2 
+                    res += "\n\t" + str(a1) + ": "
+                    res += str(float("{0:.5f}".format(diff)))
+                    break            
+
     res += "\n" 
     return res
 
