@@ -9,9 +9,10 @@ def createDict(listOfTuples):
         res[itemA] = itemB
 
     return res
-    
+
 def compareStats(name, resA, resB):    
     res = "difference in " + name + ":"
+    resTmp = None
 
     if name == "basic":
         for i in range(len(resA)):
@@ -29,29 +30,22 @@ def compareStats(name, resA, resB):
     if name == "word":
         A = createDict(resA[0])
         B = createDict(resB[0])
-        res = {}
+        resTmp = {}
 
         for i in A:
             if i in B.keys():
-                if not i in res.keys():
-                    res[i] = B[i] - A[i]
+                if not i in resTmp.keys():
+                    resTmp[i] = B[i] - A[i]
             else:
-                res[i] = -A[i]
+                resTmp[i] = -A[i]
 
 
         for i in B:
             if i in A.keys():
-                if not i in res.keys():
-                    res[i] = B[i] - A[i]
+                if not i in resTmp.keys():
+                    resTmp[i] = B[i] - A[i]
             else:
-                res[i] = B[i]
-
-
-        print("ress")
-        for i in res:
-            print(i,res[i])
-
-
+                resTmp[i] = B[i]
 
         '''
         for i in range(len(A)):
@@ -65,33 +59,52 @@ def compareStats(name, resA, resB):
                     break            
         '''
 
-    if name == "sentanc":
-        A = createDict(resA[0]) 
+    if name == "sentance":
+        A = createDict(resA[0])
         B = createDict(resB[0])
-        for i in range(len(A)):
-            a1, a2 = A[i]
-            for j in range(len(B)):
-                b1, b2 = B[j]
-                if a1 == b1:
-                    diff = b2 -a2 
-                    res += "\n\t" + str(a1) + ": "
-                    res += str(diff)
-                    break               
-    
+        resTmp = {}
+
+        for i in A:
+            if i in B.keys():
+                if not i in resTmp.keys():
+                    resTmp[i] = float("{0:.5f}".format(B[i] - A[i]))
+            else:
+                resTmp[i] =  float("{0:.5f}".format(-A[i]))
+
+
+        for i in B:
+            if i in A.keys():
+                if not i in resTmp.keys():
+                    resTmp[i] = float("{0:.5f}".format(B[i] - A[i]))
+            else:
+                resTmp[i] = float("{0:.5f}".format(B[i]))
+
     if name == "char":
-        A = createDict(resA[0]) 
+        A = createDict(resA[0])
         B = createDict(resB[0])
-        for i in range(len(A)):
-            a1, a2 = A[i]
-            for j in range(len(B)):
-                b1, b2 = B[j]
-                if a1 == b1:
-                    diff = b2 -a2 
-                    res += "\n\t" + str(a1) + ": "
-                    res += str(float("{0:.5f}".format(diff)))
-                    break            
+        resTmp = {}
 
-    res += "\n" 
+        for i in A:
+            if i in B.keys():
+                if not i in resTmp.keys():
+                    resTmp[i] = float("{0:.5f}".format(B[i] - A[i]))
+            else:
+                resTmp[i] =  float("{0:.5f}".format(-A[i]))
+
+
+        for i in B:
+            if i in A.keys():
+                if not i in resTmp.keys():
+                    resTmp[i] = float("{0:.5f}".format(B[i] - A[i]))
+            else:
+                resTmp[i] = float("{0:.5f}".format(B[i]))
+
+#res += str(float("{0:.5f}".format(diff)))
+
+    if resTmp != None:
+        for i in resTmp:
+            res += "\n\t" + str(i) + ": " + str(resTmp[i])
+
     return res
 
 def completeStats(fileName):
@@ -125,7 +138,7 @@ def completeStats(fileName):
 
     # writting word stats to file
     dumpPartialStats(wordFile, words_final)
-    
+
     # writting sentence stats to file
     dumpPartialStats(sentenceFile, sentences_final)
 
@@ -154,7 +167,7 @@ def completeStats(fileName):
 def escape(strings):
     string = ''
     lineCount = 0
-    
+
     for x in strings:
         newLine = x.replace('\n', ' ')
         newLine = newLine.replace('\t', ' ')

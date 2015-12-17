@@ -11,7 +11,6 @@ def main(fileName):
     res = completeStats(fileName)
 
     if secondRes != None:
-        print("comperring res")
         for x in res:
             print(compareStats(x, res[x], secondRes[x]))
     
