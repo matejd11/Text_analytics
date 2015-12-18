@@ -1,4 +1,5 @@
 from stats import *
+import codecs
 import sys
 
 def main(fileName):
@@ -11,9 +12,13 @@ def main(fileName):
     res = completeStats(fileName)
 
     if secondRes != None:
+        txtRes = ""
         for x in res:
-            print(compareStats(x, res[x], secondRes[x]))
-    
+            txtRes += compareStats(x, res[x], secondRes[x]) + "\n"
+
+        compareFile = codecs.open(fileName + '-com.txt', 'w', 'utf-8')
+        compareFile.write(txtRes)
+        compareFile.close()
 
 if __name__ == '__main__':
     if len(sys.argv) == 3:
