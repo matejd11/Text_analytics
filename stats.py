@@ -47,18 +47,6 @@ def compareStats(name, resA, resB):
             else:
                 resTmp[i] = B[i]
 
-        '''
-        for i in range(len(A)):
-            a1, a2 = A[i]
-            for j in range(len(B)):
-                b1, b2 = B[j]
-                if a1 == b1:
-                    diff = b2 -a2 
-                    res += "\n\t" + str(a1) + ": "
-                    res += str(diff)
-                    break            
-        '''
-
     if name == "sentance":
         A = createDict(resA[0])
         B = createDict(resB[0])
@@ -101,9 +89,12 @@ def compareStats(name, resA, resB):
 
 #res += str(float("{0:.5f}".format(diff)))
 
+
     if resTmp != None:
-        for i in resTmp:
-            res += "\n\t" + str(i) + ": " + str(resTmp[i])
+        final = sorted(resTmp.items(), key=operator.itemgetter(1))
+        final = final[::-1]
+        for i in final:
+            res += "\n\t" + str(i[0]) + ": " + str(i[1])
 
     return res
 
@@ -228,7 +219,8 @@ def charStats(escapedString, order = 1):
                 if char.lower() in chars.keys():
                     chars[char.lower()] += 1
                 else:
-                    chars[char.lower()] = 1
+                    if char != "."  and char != "!" and char != "?":
+                        chars[char.lower()] = 1
 
     for i in chars:
         chars[i] = float("{0:.5f}".format(chars[i] / charCount))
