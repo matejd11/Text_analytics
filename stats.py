@@ -96,7 +96,7 @@ def compareStats(name, resA, resB):
 
     return res
 
-def completeStats(fileName):
+def completeStats(fileName, graph = False):
     inputFile = codecs.open(fileName + '.txt', 'r', 'utf-8')
     resultFile = codecs.open(fileName + '-basic.txt', 'w', 'utf-8')
     sentenceFile = codecs.open(fileName + '-sentences.txt', 'w', 'utf-8')
@@ -121,7 +121,6 @@ def completeStats(fileName):
 
     # char statistics orderd by Alphabet
     char_final_2, charCount_2 = charStats(escapedString, 2)
-    showPlot(char_final)
 
     # writting basic stats to file
     stats_basic(resultFile, lineCount, wordCount, charCount, sentenceCount)
@@ -144,6 +143,9 @@ def completeStats(fileName):
     wordFile.close()
     charFile.close()
     charFile2.close()
+
+    if graph:
+        showPlot(char_final, "Pocetnost pismen v " + fileName, "pismena", "pocet")
 
     res = {
         "basic" : [lineCount, wordCount, charCount, sentenceCount],

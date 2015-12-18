@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def showPlot(data):
+def showPlot(data, title, xlabel, ylabel):
 
     x = []
     xstick = []
@@ -14,15 +14,12 @@ def showPlot(data):
         xstick.append(a)
         y.append(b)
 
-    print(x)
-    print(y)
-    print( xstick)
     plt.xticks(x, xstick)
     plt.bar(x, y)
 
-    plt.xlabel("a")
-    plt.ylabel("b")
-    plt.title("title")
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
     #plt.legend()
     plt.show()
 
