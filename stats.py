@@ -1,5 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import operator
 import codecs
+from export import *
 
 
 def createDict(listOfTuples):
@@ -10,7 +14,7 @@ def createDict(listOfTuples):
 
     return res
 
-def compareStats(name, resA, resB):    
+def compareStats(name, resA, resB):
     res = "difference in " + name + ":"
     resTmp = None
 
@@ -25,7 +29,7 @@ def compareStats(name, resA, resB):
                 res += "\n\tin char count: "
             elif i == 3:
                 res += "\n\tin centences count:"
-            res += str(diff)            
+            res += str(diff)
 
     if name == "word":
         A = createDict(resA[0])
@@ -39,13 +43,12 @@ def compareStats(name, resA, resB):
             else:
                 resTmp[i] = -A[i]
 
-
-        for i in B:
-            if i in A.keys():
-                if not i in resTmp.keys():
-                    resTmp[i] = B[i] - A[i]
-            else:
-                resTmp[i] = B[i]
+            for i in B:
+                if i in A.keys():
+                    if not i in resTmp.keys():
+                        resTmp[i] = B[i] - A[i]
+                else:
+                    resTmp[i] = B[i]
 
     if name == "sentance":
         A = createDict(resA[0])
@@ -58,7 +61,6 @@ def compareStats(name, resA, resB):
                     resTmp[i] = float("{0:.5f}".format(B[i] - A[i]))
             else:
                 resTmp[i] =  float("{0:.5f}".format(-A[i]))
-
 
         for i in B:
             if i in A.keys():
@@ -79,16 +81,12 @@ def compareStats(name, resA, resB):
             else:
                 resTmp[i] =  float("{0:.5f}".format(-A[i]))
 
-
         for i in B:
             if i in A.keys():
                 if not i in resTmp.keys():
                     resTmp[i] = float("{0:.5f}".format(B[i] - A[i]))
             else:
                 resTmp[i] = float("{0:.5f}".format(B[i]))
-
-#res += str(float("{0:.5f}".format(diff)))
-
 
     if resTmp != None:
         final = sorted(resTmp.items(), key=operator.itemgetter(1))
@@ -147,11 +145,11 @@ def completeStats(fileName):
     charFile2.close()
 
     res = {
-            "basic" : [lineCount, wordCount, charCount, sentenceCount],
-            "word" : [words_final],
-            "sentance" : [sentences_final],
-            "char" : [char_final, char_final_2]
-          }
+        "basic" : [lineCount, wordCount, charCount, sentenceCount],
+        "word" : [words_final],
+        "sentance" : [sentences_final],
+        "char" : [char_final, char_final_2]
+    }
 
     return res
 
