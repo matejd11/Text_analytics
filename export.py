@@ -4,12 +4,20 @@ import matplotlib.pyplot as plt
 def showPlot(data):
 
     x = []
+    xstick = []
     y = []
 
-    for i in data:
-        x.append(data[i])
-        y.append(i)
+    x = list(range(len(data)))
 
+    for i in data:
+        a,b = i
+        xstick.append(a)
+        y.append(b)
+
+    print(x)
+    print(y)
+    print( xstick)
+    plt.xticks(x, xstick)
     plt.bar(x, y)
 
     plt.xlabel("a")
@@ -18,4 +26,3 @@ def showPlot(data):
     #plt.legend()
     plt.show()
 
-showPlot({1:4,2:5})

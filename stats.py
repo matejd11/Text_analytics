@@ -98,11 +98,11 @@ def compareStats(name, resA, resB):
 
 def completeStats(fileName):
     inputFile = codecs.open(fileName + '.txt', 'r', 'utf-8')
-    resultFile = open(fileName + '-basic.txt', 'w')
-    sentenceFile = open(fileName + '-sentences.txt', 'w')
-    wordFile = open(fileName + '-word.txt', 'w')
-    charFile = open(fileName + '-char.txt', 'w')
-    charFile2 = open(fileName + '-char-2.txt', 'w')
+    resultFile = codecs.open(fileName + '-basic.txt', 'w', 'utf-8')
+    sentenceFile = codecs.open(fileName + '-sentences.txt', 'w', 'utf-8')
+    wordFile = codecs.open(fileName + '-word.txt', 'w', 'utf-8')
+    charFile = codecs.open(fileName + '-char.txt', 'w', 'utf-8')
+    charFile2 = codecs.open(fileName + '-char-2.txt', 'w', 'utf-8')
 
     # text from file. 
     inputString = inputFile.read()
@@ -121,6 +121,7 @@ def completeStats(fileName):
 
     # char statistics orderd by Alphabet
     char_final_2, charCount_2 = charStats(escapedString, 2)
+    showPlot(char_final)
 
     # writting basic stats to file
     stats_basic(resultFile, lineCount, wordCount, charCount, sentenceCount)
