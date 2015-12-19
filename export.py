@@ -1,7 +1,16 @@
+#!/usr/bin/env␣python¬
+#␣-*-␣coding:␣utf-8␣-*-¬
+
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
 
 
 def showPlot(data, title, xlabel, ylabel):
+
+    #rcParams['text.usetex'] = True
+    #plt.rc('font', family='Arial')
+    #plt.rc('font', **{'sans-serif' : 'Arial', 'family' : 'sans-serif'})
+    plt.rc('font', family='DejaVu Sans')
 
     x = []
     xstick = []
