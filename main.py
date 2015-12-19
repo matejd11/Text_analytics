@@ -2,25 +2,16 @@
 # -*- coding: utf-8 -*-
 
 from stats import *
+import argparse
 import codecs
 import sys
 
-def main(fileName, isList = False):
-    graph = False
-    if "-g" in fileName:
-        graph = True
-        fileName.remove("-g")
-
-    secondRes = None 
-    secondFileName = None
-    while isList and len(fileName) > 1:
-        secondFileName = fileName.pop()
-        secondRes = completeStats(secondFileName)  
-    print(fileName)
-    fileName = fileName[0]
+def main(fileName, fileName2, graph):
     res = completeStats(fileName, graph)
 
-    if secondRes != None:
+    if fileName2 != None:
+        secondRes = completeStats(fileName2)  
+
         txtRes = ""
         for x in res:
             txtRes += compareStats(x, res[x], secondRes[x]) + "\n"
@@ -30,11 +21,12 @@ def main(fileName, isList = False):
         compareFile.close()
 
 if __name__ == '__main__':
-    if len(sys.argv) == 4:
-        main([sys.argv[1],sys.argv[2],sys.argv[3]], True)
-    elif len(sys.argv) == 3:
-        main([sys.argv[1],sys.argv[2]], True)
-    elif len(sys.argv) == 2:
-        main(sys.argv[1])
-    else:
-        main("input")
+    parser = argparse.ArgumentParser(description='Text analytics - Matej Dujava 445560', conflict_handler='resolve')
+    parser.add_argument('firstFile', action="store", default="input", help='file name of first file')
+    parser.add_argument('-s', '--secondFile', action="store", default= None, help='file name of second file')
+    parser.add_argument('--secondFile', action="store", default= None, help='file name of second file')
+    parser.add_argument('-g', action="store_true", default=False, help='show graph of char distribution')
+
+    results = parser.parse_args()
+
+    main(results.firstFile, results.secondFile, results.g)
