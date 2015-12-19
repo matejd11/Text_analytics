@@ -24,7 +24,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Text analytics - Matej Dujava 445560', conflict_handler='resolve')
     parser.add_argument('firstFile', action="store", default="input", help='file name of first file')
     parser.add_argument('-s', '--secondFile', action="store", default= None, help='file name of second file')
-    parser.add_argument('--secondFile', action="store", default= None, help='file name of second file')
     parser.add_argument('-g', action="store_true", default=False, help='show graph of char distribution')
 
     results = parser.parse_args()
