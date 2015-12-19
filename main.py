@@ -6,17 +6,19 @@ import argparse
 import codecs
 import sys
 
+
 def main(fileName, fileName2, graph):
+
     res = completeStats(fileName, graph)
 
     if fileName2 != None:
         secondRes = completeStats(fileName2)  
 
         txtRes = ""
-        for x in res:
+        for x in res.keys():
             txtRes += compareStats(x, res[x], secondRes[x]) + "\n"
 
-        compareFile = codecs.open(fileName + '-com.txt', 'w', 'utf-8')
+        compareFile = codecs.open(fileName + '+' + fileName2 + '-com.txt', 'w', 'utf-8')
         compareFile.write(txtRes)
         compareFile.close()
 

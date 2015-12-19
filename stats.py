@@ -146,6 +146,7 @@ def completeStats(fileName, graph = False):
 
     if graph:
         showPlot(char_final, "Pocetnost pismen v " + fileName, "pismena", "pocet")
+        showPlot(words_final, "Pocetnost slov v " + fileName, "slova", "pocet", 100)
 
     res = {
         "basic" : [lineCount, wordCount, charCount, sentenceCount],
