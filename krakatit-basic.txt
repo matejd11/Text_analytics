@@ -1,0 +1,11 @@
+Line count: 1940
+Word count: 92761
+Char count: 365668
+Sentence count: 7731
+
+Words per line(avg): 47.81
+Words per sentence(avg): 12.0
+
+Char per line(avg): 188.49
+Char per sentence(avg): 47.3
+Char per word(avg): 3.94
