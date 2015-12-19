@@ -145,8 +145,8 @@ def completeStats(fileName, graph = False):
     charFile2.close()
 
     if graph:
-        showPlot(char_final, "Pocetnost pismen v " + fileName, "pismena", "pocet")
-        showPlot(words_final, "Pocetnost slov v " + fileName, "slova", "pocet", 100)
+        showPlot(char_final, "Početnosť písmen v súbore: " + fileName + ".txt", "písmena", "početnosť v intervale <0; 1>")
+        showPlot(words_final, "Početnosť slov v súbore: " + fileName + ".txt", "slová", "počet", 100)
 
     res = {
         "basic" : [lineCount, wordCount, charCount, sentenceCount],
